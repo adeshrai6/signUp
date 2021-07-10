@@ -2,7 +2,7 @@ const from = document.getElementById('form');
 const username = document.getElementById('username');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+const password2 = document.getElementById('password confirmation');
 
 //Show input error message
 function showError(input, message) {
@@ -28,11 +28,15 @@ function isValidEmail(email) {
 function checkRequired(inputArr) {
   inputArr.forEach(function (input) {
     if (input.value.trim() === '') {
-      showError(input, `${input.id} is required`);
+      showError(input, `${getFieldName(input)} is required`);
     } else {
       showSuccess(input);
     }
   });
+}
+
+function getFieldName(input) {
+  return input.id.charAt(0).toUppercase() + input.id.slice(1);
 }
 
 //Event Listners
